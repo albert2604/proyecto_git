@@ -1,4 +1,5 @@
 class Cancha:
+
     def __init__(self, numero_cancha, deporte,precio, habilitada):
         self.numero_cancha = numero_cancha
         self.deporte = deporte 
@@ -20,3 +21,4 @@ class Cancha:
        numero_cancha = input("numero de la cancha: ")
        if numero_cancha in self.canchas:
            pass
+
