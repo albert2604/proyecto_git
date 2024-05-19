@@ -65,9 +65,7 @@ class Empleados(Personas):
 
 def registrar_empleado():
     id = input("dime el id: ")
-    if id in lista_clientes:
-
-        pass
+    pass
 def asignar_tarea():
     pass
 
