@@ -65,7 +65,7 @@ class Empleados(Personas):
 
 def registrar_empleado():
     id = input("dime el id: ")
-    pass
+    pass 
 def asignar_tarea():
     pass
 
