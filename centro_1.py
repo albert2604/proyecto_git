@@ -1,3 +1,6 @@
+import personas as p
+import cancha as c 
+import reservas as r
 class Centro:
     def __init__(self, nombre, direccion):
         self.nombre = nombre
