@@ -8,29 +8,26 @@ class Reservas:
         self.pago = pago #atributo que almacenará el pago total de todas lass reservas
 
 def crear_reserva(lista_cancha, lista_clientes):
-    numero_cancha = int(input("introduzc el numero de la cancha: "))
-    id_cliente = input("introduzca id del cliente")
+    numero_cancha = int(input("introduzca el numero de la cancha: "))
+    id_cliente = input("introduzca id del cliente: ")
     numero_reserva = int(input("Numero de reserva: "))
-    fecha=int(input("introduzca la fecha(ddmmaaaa): "))
-    if fecha != 8:
-        print("fecha incorrecta")
-        return 
-    else:
-        dia= fecha // 1000000
-        mes= (fecha // 10000) % 100
-        anio= fecha % 10000
-        fecha = [(dia, mes, anio)]
+    fecha = int(input("introduzca la fecha (ddmmaaaa): "))
+    
+    dia = fecha // 1000000
+    mes = (fecha // 10000) % 100
+    anio = fecha % 10000
+    fecha_formateada = (dia, mes, anio)
 
     for cancha in lista_cancha:
         if numero_cancha == cancha.numero_cancha:
             for cliente in lista_clientes:
                 if id_cliente == cliente.id:
-                    if cancha.habilatado == "si" and cliente.activo == "s":
+                    if cancha.habilitada.lower() == "si":
                         if cliente.saldo >= -2000:
-                            cliente.saldo -= cancha.precio #restamos el precio de la cancha al saldo del cliente despues de haber verficado si su saldo es correcto
-                            reserva.pago += cancha.precio #lo mismo con el atributo de pago una vez pague el cliente sumamos el precio de la cancha al total de pago
+                            cliente.saldo -= cancha.precio
+                            reserva = Reservas(numero_reserva, fecha_formateada, cliente.id, cancha.numero_cancha)
+                            reserva.pago += cancha.precio
                             cancha.reservas.append(reserva)
-                            reserva = Reservas(numero_reserva, fecha, id_cliente, numero_cancha)
                             return reserva
                         else:
                             print("Saldo de cliente muy bajo, no puede crear la reserva")
@@ -40,7 +37,6 @@ def crear_reserva(lista_cancha, lista_clientes):
                     print("id de cliente no encontrado")
         else:
             print("numero de cancha no encontrada")
-
 def mostrar_reservas(lista_cancha):
     for cancha in lista_cancha:
         for reservas in cancha.reservas:

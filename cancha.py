@@ -46,6 +46,7 @@ def quitar_cancha(lista_canchas):
         if cancha.numero_cancha == numero:
             if not cancha.reservas:
                 lista_canchas.remove(cancha)
+                print("cancha eliminada")
             else:
                 print("No se puede quitar la cancha porque tiene resrvas pendientes")
         else:

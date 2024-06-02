@@ -11,6 +11,7 @@ class Clientes(Personas):
         self.id = id       
         self.telefono = telefono
         self.activo = activo
+        
 
 """Funciones para crear y registrar al cliente"""    
 

@@ -7,6 +7,7 @@ class Centro:
         self.direccion = direccion
         self.lista_canchas = []  
         self.lista_clientes = []
+        self.lista_empleados = []
         
 
     @staticmethod
@@ -51,7 +52,7 @@ class Centro:
                 case "10":
                     res.crear_reserva(centro.lista_canchas, centro.lista_clientes)
                 case "11":
-                    res.mostrar_reservas()
+                    res.mostrar_reservas(centro.lista_canchas)
                 case "12":
                     res.saldo_cliente(centro.lista_clientes)
                 case "13":
