@@ -6,11 +6,12 @@ class Personas:
         self.apellido = apellido
         
 class Clientes(Personas):
-    def __init__(self, id, nombre, apellido, telefono, activo ):
+    def __init__(self, id, nombre, apellido, telefono, activo, saldo ):
         super().__init__(nombre, apellido)
         self.id = id       
         self.telefono = telefono
         self.activo = activo
+        self.saldo = saldo
 
 """Funciones para crear y registrar al cliente"""    
 
@@ -20,6 +21,7 @@ def crear_cliente():
     nombre = input("Ingrese el nombre del cliente: ")
     apellido = input("Ingrese el apellido del cliente: ")
     telefono = input("Ingrese el teléfono del cliente: ")
+    saldo = int(input("dime el saldo que quieres ingresar"))
     activo_input = input("¿El cliente está activo? (s/n): ")
     activo = activo_input.lower() == 's'
     
