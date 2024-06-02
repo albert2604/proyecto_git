@@ -55,7 +55,7 @@ class Centro:
                 case "11":
                     res.mostrar_reservas(centro.lista_canchas)
                 case "12":
-                    res.saldo_cliente(centro.lista_clientes)
+                    pass
                 case "13":
                     break
                 case _:
