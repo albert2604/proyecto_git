@@ -43,7 +43,7 @@ class Centro:
                 case "5":
                     per.listar_clientes_totales(centro.lista_clientes)
                 case "6":
-                    per.registrar_empleado_cancha(centro.lista_canchas)
+                    per.registrar_empleado_cancha(centro.lista_canchas, centro.lista_empleados)
                 case "7":
                     per.asignar_tarea(centro.lista_canchas)
                 case "8":
@@ -55,7 +55,7 @@ class Centro:
                 case "11":
                     res.mostrar_reservas(centro.lista_canchas)
                 case "12":
-                    res.saldo_cliente(centro.lista_clientes)
+                    pass
                 case "13":
                     break
                 case _:
