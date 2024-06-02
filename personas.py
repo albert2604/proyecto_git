@@ -92,22 +92,21 @@ class Empleados(Personas):
         """Funcion para registrar empleados en una cancha,
         solicitando el id del empleado y la cancha en la que se quiere registrar.
         """
-
 def crear_empleado():
     id_empleado = input("Ingrese el ID del empleado: ")
     nombre = input("Ingrese el nombre del empleado: ")
     apellido = input("Ingrese el apellido del empleado: ")
     return Empleados(id_empleado, nombre, apellido)
 
-
 def registrar_empleado_cancha(lista_canchas, lista_empleados):
     empleado = crear_empleado()
 
     # Verificar si el empleado ya está registrado en alguna cancha
     for cancha in lista_canchas:
-        if empleado_encontrado in cancha.empleados:
-            print(f"El empleado {empleado_encontrado.nombre} {empleado_encontrado.apellido} ya está registrado en otra cancha.")
-            return
+        for emp in cancha.empleados:
+            if emp.id == empleado.id:
+                print(f"El empleado {emp.nombre} {emp.apellido} ya está registrado en otra cancha.")
+                return
 
     # Solicitar al usuario que ingrese el deporte de la cancha que desea utilizar
     deporte_cancha = input("Ingrese el deporte de la cancha que desea utilizar: ")
@@ -117,8 +116,9 @@ def registrar_empleado_cancha(lista_canchas, lista_empleados):
     for c in lista_canchas:
         if c.deporte.lower() == deporte_cancha.lower():
             canchas_deporte.append(c)
-        if not canchas_deporte:
-            print("No hay ninguna cancha disponible para el deporte especificado.")
+
+    if not canchas_deporte:
+        print("No hay ninguna cancha disponible para el deporte especificado.")
         return
 
     print("Canchas disponibles para el deporte especificado:")
@@ -144,6 +144,7 @@ def registrar_empleado_cancha(lista_canchas, lista_empleados):
 
     # Agregar el empleado a la lista de empleados
     lista_empleados.append(empleado)
+
     """Funcion para asignar una tarea a un empleado 
     """
 def asignar_tarea(lista_canchas):
