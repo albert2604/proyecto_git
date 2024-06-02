@@ -90,7 +90,7 @@ class Empleados(Personas):
         """
 def registrar_empleado_cancha(lista_canchas):
     id_empleado = input("Ingrese el ID del empleado: ")
-    empleado_encontrado = None
+    
     
     # Verificar si el empleado está en la lista de empleados y no está asignado a otra cancha
     for cancha in lista_canchas:
