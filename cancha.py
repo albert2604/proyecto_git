@@ -9,24 +9,26 @@ class Cancha:
         self.empleados = []
         
     
-def crear_cancha(canchas):
-    numero_cancha = int(input("numero de la cancha: "))
+def crear_cancha():
+    numero_cancha = input("numero de la cancha: ")
     deporte = input("Deporte a realizar: ")
     precio = input("Precio de la cancha: ")
     habilitada = input("Esta habilitada?: ")
     cancha = Cancha(numero_cancha, deporte, precio, habilitada)
-    canchas.append(cancha)
     return cancha
-def agregar_cancha(canchas, lista_cancha):
-    numero = int(input("Introduce el numero de cancha: "))
-    for cancha in canchas:
-        if cancha.numero_cancha == numero:
-            if cancha in lista_cancha:
-                print(f"La cancha {cancha.numero_cancha} ya esta agregada")
-            else:
-                lista_cancha.append(cancha)
-        
-def listar_canchas_por_deporte(cancha, lista_cancha):
+
+def agregar_cancha(lista_cancha):
+    cancha = crear_cancha()
+    for c in lista_cancha:
+            if c.numero_cancha == cancha.numero_cancha:
+                print("Cancha ya en la lista.")
+                return
+
+    lista_cancha.append(cancha)
+    
+    print(f"Cancha {cancha.numero_cancha} agregado exitosamente.")
+
+def listar_canchas_por_deporte(lista_cancha):
     diccionario_canchas = {}
     deporte= input("Que deporte desea buscar?:")
     for cancha in lista_cancha:
@@ -34,6 +36,7 @@ def listar_canchas_por_deporte(cancha, lista_cancha):
             if deporte not in diccionario_canchas:
                 diccionario_canchas[deporte] = []
                 diccionario_canchas[deporte].append(cancha)
+                print(diccionario_canchas)
         else:
             print("No hay ninguna cacha con ese deporte")
 

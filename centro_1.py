@@ -7,51 +7,56 @@ class Centro:
         self.direccion = direccion
         self.lista_canchas = []  
         self.lista_clientes = []
+        
 
     @staticmethod
     def main():
-        canchas = []
         centro = Centro("Centro Deportivo 1", "Arcipreste de Hita")
         while True:
             print("Menú Centro Deportivo:")
-            print("1. Crear cancha")
-            print("2. Agregar cancha/s")
-            print("3. Listar cancha por deporte")
-            print("4. Quitar cancha")
-            print("5. Crear cliente")
-            print("6. Agregar cliente")
-            print("7. Listar cliente")
-            print("8. Registrar empleado")
-            print("9. Asignar tarea a empleado")
-            print("10. Listar empleados desocupados")
-            print("11. Salir")
+            print("1. Crear y agregar cancha")
+            print("2. Listar cancha por deporte")
+            print("3. Quitar cancha")
+            print("4. Crear y agregar cliente")
+            print("5. Listar clientes totales")
+            print("6. Registrar empleado")
+            print("7. Asignar tarea a empleado")
+            print("8. Listar empleados desocupados")
+            print("9. Quitar empleado")
+            print("10. Crear reserva")
+            print("11. Listar reservas")
+            print("12. Mostrar saldo de un cliente")
+            print("13. Salir")
             opcion = input("Escoja una opcion(1-11):")
 
             match opcion:
                 case "1":
-                    can.crear_cancha(canchas)
+                    can.agregar_cancha(centro.lista_canchas)
                 case "2":
-                    can.agregar_cancha(canchas, centro.lista_canchas)
-                    print(centro.lista_canchas)
+                    can.listar_canchas_por_deporte(centro.lista_canchas)
                 case "3":
-                    pass
+                    can.quitar_cancha(centro.lista_canchas)
                 case "4":
-                    pass
+                    per.agregar_cliente(centro.lista_clientes)
                 case "5":
-                    pass
+                    per.listar_clientes_totales(centro.lista_clientes)
                 case "6":
-                    pass
+                    per.registrar_empleado_cancha(centro.lista_canchas)
                 case "7":
-                    pass
+                    per.asignar_tarea(centro.lista_canchas)
                 case "8":
-                    pass
+                    per.empleados_desocupados(centro.lista_canchas)
                 case "9":
-                    pass
+                    per.quitar_empleado_cancha(centro.lista_canchas)
                 case "10":
-                    pass
+                    res.crear_reserva(centro.lista_canchas, centro.lista_clientes)
                 case "11":
+                    res.mostrar_reservas()
+                case "12":
+                    res.saldo_cliente(centro.lista_clientes)
+                case "13":
                     break
                 case _:
-                    print("Opcion no encontrada, escoja un numero del 1 al 11")
+                    print("Opcion no encontrada, escoja un numero del 1 al 13")
 if __name__ == "__main__":
     Centro.main()
