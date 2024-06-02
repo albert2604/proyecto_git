@@ -95,24 +95,11 @@ class Empleados(Personas):
 def registrar_empleado_cancha(lista_canchas):
     id_empleado = input("Ingrese el ID del empleado: ")
     
-    
-    # Verificar si el empleado está en la lista de empleados y no está asignado a otra cancha
-    for cancha in lista_canchas:
-        for empleado in cancha.empleados:
-            if empleado.id == id_empleado:
-                empleado_encontrado = empleado
-            break
-        
-
-
-    if not empleado_encontrado:
-        print("Empleado no encontrado.")
-        return
 
     # Verificar si el empleado ya está registrado en alguna cancha
     for cancha in lista_canchas:
-        if empleado_encontrado in cancha.empleados:
-            print(f"El empleado {empleado_encontrado.nombre} {empleado_encontrado.apellido} ya está registrado en otra cancha.")
+        for empleado in cancha.empleados:
+            print(f"El empleado {empleado.nombre} {empleado.apellido} ya está registrado en otra cancha.")
             return
 
     # Solicitar al usuario que ingrese el deporte de la cancha que desea utilizar
