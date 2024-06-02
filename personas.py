@@ -27,7 +27,7 @@ def crear_cliente():
     activo_input = input("¿El cliente está activo? (s/n): ")
     activo = activo_input.lower() == 's'
     
-    cliente = Clientes(id, nombre, apellido, telefono, activo), saldo
+    cliente = Clientes(id, nombre, apellido, telefono, activo, saldo)
     return cliente
 
 
