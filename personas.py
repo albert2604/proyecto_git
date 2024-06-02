@@ -183,7 +183,7 @@ def empleados_desocupados(lista_canchas):
     Funcion para quitar empleados de la cancha 
 """
 #Quitar un empleado de la cancha
-def quitar_empleado_cancha(lista_empleados, lista_canchas):
+def quitar_empleado_cancha(lista_canchas):
     id_empleado = input("Ingrese el ID del empleado que desea quitar de la cancha: ")
     
     for cancha in lista_canchas:
