@@ -1,4 +1,5 @@
-
+"""Creamos la clase persona y la clase heredada Cliente
+    """
 class Personas:
     def __init__(self, nombre, apellido) :
         self.nombre = nombre
@@ -10,7 +11,10 @@ class Clientes(Personas):
         self.id = id       
         self.telefono = telefono
         self.activo = activo
-    
+
+"""Funciones para crear y registrar al cliente"""    
+
+
 def crear_cliente():
     id = input("Ingrese el ID del cliente: ")
     nombre = input("Ingrese el nombre del cliente: ")
@@ -38,6 +42,10 @@ def agregar_cliente(lista_clientes):
     lista_clientes.append(cliente)
     print(f"Cliente {cliente.nombre} {cliente.apellido} agregado exitosamente.")
 
+
+    """Funcion quitar cliente de la lista que nos solicite el usuario
+    """
+
 def quitar_cliente(lista_clientes):
     id = input("Ingrese el ID del cliente que desea eliminar: ")
     
@@ -51,6 +59,8 @@ def quitar_cliente(lista_clientes):
     # Si no se encuentra el cliente con el ID proporcionado
     print("Cliente no encontrado.")
     
+"""Funcion para mostrar la lista de clientes totales"""
+
 def listar_clientes_totales(lista_clientes):
     if not lista_clientes:
         print("No hay clientes en la lista.")
@@ -63,6 +73,11 @@ def listar_clientes_totales(lista_clientes):
                 estado = "Inactivo"
             print(f"ID: {cliente.id}, Nombre: {cliente.nombre} {cliente.apellido}, Teléfono: {cliente.telefono}, Estado: {estado}")
 
+
+    """Creamos la clase empleados heredada de la clase personas
+    """
+
+
 class Empleados(Personas):
     def __init__(self, id, nombre, apellido):
         super().__init__(nombre, apellido)
@@ -70,7 +85,9 @@ class Empleados(Personas):
         self.desocupado = True
         self.tareas = []
 
-
+        """Funcion para registrar empleados en una cancha,
+        solicitando el id del empleado y la cancha en la que se quiere registrar.
+        """
 def registrar_empleado_cancha(diccionario_canchas, lista_empleados):
     id_empleado = input("Ingrese el ID del empleado: ")
     empleado_encontrado = None
@@ -79,10 +96,8 @@ def registrar_empleado_cancha(diccionario_canchas, lista_empleados):
     for empleado in lista_empleados:
         if empleado.id == id_empleado:
             empleado_encontrado = empleado
-            if not empleado.desocupado:
-                print(f"El empleado {empleado.nombre} {empleado.apellido} ya está asignado a otra tarea.")
-                return
             break
+
 
     if not empleado_encontrado:
         print("Empleado no encontrado.")
@@ -124,22 +139,54 @@ def registrar_empleado_cancha(diccionario_canchas, lista_empleados):
 
     # Registrar al empleado en la cancha
     cancha_seleccionada.empleados.append(empleado_encontrado)
-    empleado_encontrado.desocupado = False
     cancha_seleccionada.habilitada = "no"
     print(f"Empleado {empleado_encontrado.nombre} {empleado_encontrado.apellido} registrado en la cancha {cancha_seleccionada.numero_cancha}.")
 
-        
-def asignar_tarea():
-    pass
+    """Funcion para asignar una tarea a un empleado 
+    """
+def asignar_tarea(lista_empleados):
+    id_empleado = input("Ingrese el ID del empleado al que desea asignar la tarea: ")
+    tarea = input("Ingrese la tarea que desea asignar: ")
 
-def empleados_desocupados():
-    pass
-"""
-def quitar_empleado_cancha():
-    id = input("dime el id del empleado: ")
     for empleado in lista_empleados:
-        if empleado.id in lista_empleados:
-            lista_empleados.remove(empleado)
-            print(f"{empleado.nombre} {empleado.apellido} eliminado")
-    pass
+        if empleado.id == id_empleado:
+            if empleado.desocupado:
+                empleado.tareas.append(tarea)
+                empleado.desocupado = False
+                print(f"Tarea '{tarea}' asignada al empleado {empleado.nombre} {empleado.apellido}.")
+            else:
+                print(f"El empleado {empleado.nombre} {empleado.apellido} ya tiene tareas asignadas.")
+            return
+    print("Empleado no encontrado.")
+
 """
+Funcion para mostrar la lista de todos los empleados desocupados en ese momento.
+"""
+#Mostrar empleados desocupados
+def empleados_desocupados(lista_empleados):
+    desocupados = []
+    for empleado in lista_empleados:
+        if empleado.desocupado:
+            desocupados.append(empleado)
+    
+    if not desocupados:
+        print("No hay empleados desocupados.")
+    else:
+        print("Empleados desocupados:")
+        for empleado in desocupados:
+            print(f"ID: {empleado.id}, Nombre: {empleado.nombre} {empleado.apellido}")
+""" 
+    Funcion para quitar empleados de la cancha 
+"""
+#Quitar un empleado de la cancha
+def quitar_empleado_cancha(lista_empleados, lista_canchas):
+    id_empleado = input("Ingrese el ID del empleado que desea quitar de la cancha: ")
+    
+    for cancha in lista_canchas:
+        for empleado in cancha.empleados:
+            if empleado.id == id_empleado:
+                cancha.empleados.remove(empleado)
+                empleado.desocupado = True
+                print(f"Empleado {empleado.nombre} {empleado.apellido} quitado de la cancha {cancha.numero_cancha}.")
+                return
+    print("Empleado no encontrado en ninguna cancha.")
