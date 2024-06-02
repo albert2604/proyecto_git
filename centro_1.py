@@ -10,6 +10,7 @@ class Centro:
 
     @staticmethod
     def main():
+        canchas = []
         centro = Centro("Centro Deportivo 1", "Arcipreste de Hita")
         while True:
             print("Menú Centro Deportivo:")
@@ -28,9 +29,9 @@ class Centro:
 
             match opcion:
                 case "1":
-                    cancha = can.crear_cancha(centro.lista_canchas)
+                    can.crear_cancha(canchas)
                 case "2":
-                    can.agregar_cancha(cancha, centro.lista_canchas)
+                    can.agregar_cancha(canchas, centro.lista_canchas)
                     print(centro.lista_canchas)
                 case "3":
                     pass
