@@ -13,7 +13,7 @@ class Centro:
 
     @staticmethod
     def main():
-        centro = Centro("Centro Deportivo 1", "Arcipreste de Hita")
+        centro = Centro("Centro Deportivo 2", "Arcipreste de Hita")
         while True:
             print("Menú Centro Deportivo:")
             print("1. Crear y agregar cancha")
