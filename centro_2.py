@@ -34,7 +34,7 @@ class Centro:
             opcion = input("Escoja una opcion(1-13):")
 
             if opcion == "1":
-                pass
+                can.agregar_cancha(centro.lista_canchas)
             elif opcion == "2":
                 can.listar_canchas_por_deporte(centro.lista_canchas)
             elif opcion == "3":
@@ -54,8 +54,7 @@ class Centro:
             elif opcion == "10":
                 res.crear_reserva(centro.lista_canchas, centro.lista_clientes)
             elif opcion == "11":
-                # Aquí necesitaríamos una función para mostrar reservas de una cancha específica o del cliente
-                pass
+                res.mostrar_reservas(centro.lista_canchas)
             elif opcion == "12":
                 res.saldo_cliente(centro.lista_clientes)
             elif opcion == "13":
