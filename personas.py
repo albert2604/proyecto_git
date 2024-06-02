@@ -92,15 +92,21 @@ class Empleados(Personas):
         """Funcion para registrar empleados en una cancha,
         solicitando el id del empleado y la cancha en la que se quiere registrar.
         """
-def registrar_empleado_cancha(lista_canchas):
+def crear_empleado():
     id_empleado = input("Ingrese el ID del empleado: ")
-    
+    nombre = input("Ingrese el nombre del empleado: ")
+    apellido = input("Ingrese el apellido del empleado: ")
+    return Empleados(id_empleado, nombre, apellido)
+
+def registrar_empleado_cancha(lista_canchas, lista_empleados):
+    empleado = crear_empleado()
 
     # Verificar si el empleado ya está registrado en alguna cancha
     for cancha in lista_canchas:
-        for empleado in cancha.empleados:
-            print(f"El empleado {empleado.nombre} {empleado.apellido} ya está registrado en otra cancha.")
-            return
+        for emp in cancha.empleados:
+            if emp.id == empleado.id:
+                print(f"El empleado {emp.nombre} {emp.apellido} ya está registrado en otra cancha.")
+                return
 
     # Solicitar al usuario que ingrese el deporte de la cancha que desea utilizar
     deporte_cancha = input("Ingrese el deporte de la cancha que desea utilizar: ")
@@ -116,7 +122,8 @@ def registrar_empleado_cancha(lista_canchas):
         return
 
     print("Canchas disponibles para el deporte especificado:")
-    print(canchas_deporte)
+    for i, cancha in enumerate(canchas_deporte):
+        print(f"{i}: Cancha {cancha.numero_cancha}")
 
     opcion_cancha = int(input("Seleccione el número de la cancha: ")) 
 
@@ -126,14 +133,17 @@ def registrar_empleado_cancha(lista_canchas):
 
     cancha_seleccionada = canchas_deporte[opcion_cancha]
 
-    if not cancha_seleccionada.habilitada.lower() == "si":
+    if cancha_seleccionada.habilitada.lower() != "si":
         print(f"La cancha {cancha_seleccionada.numero_cancha} no está habilitada.")
         return
 
     # Registrar al empleado en la cancha
-    cancha_seleccionada.empleados.append(empleado_encontrado)
+    cancha_seleccionada.empleados.append(empleado)
     cancha_seleccionada.habilitada = "no"
-    print(f"Empleado {empleado_encontrado.nombre} {empleado_encontrado.apellido} registrado en la cancha {cancha_seleccionada.numero_cancha}.")
+    print(f"Empleado {empleado.nombre} {empleado.apellido} registrado en la cancha {cancha_seleccionada.numero_cancha}.")
+
+    # Agregar el empleado a la lista de empleados
+    lista_empleados.append(empleado)
 
     """Funcion para asignar una tarea a un empleado 
     """
