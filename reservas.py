@@ -29,7 +29,6 @@ def crear_reserva(lista_cancha, lista_clientes):
                         if cliente.saldo >= -2000:
                             cliente.saldo -= cancha.precio #restamos el precio de la cancha al saldo del cliente despues de haber verficado si su saldo es correcto
                             reserva.pago += cancha.precio #lo mismo con el atributo de pago una vez pague el cliente sumamos el precio de la cancha al total de pago
-                            cliente.reservas.append(reserva)
                             cancha.reservas.append(reserva)
                             reserva = Reservas(numero_reserva, fecha, id_cliente, numero_cancha)
                             return reserva
@@ -41,11 +40,12 @@ def crear_reserva(lista_cancha, lista_clientes):
                     print("id de cliente no encontrado")
         else:
             print("numero de cancha no encontrada")
-def mostrar_reservas_cancha(cancha):
-    print(cancha.reservas)
 
-def mostrar_reservas_cliente(cliente):
-    print(cliente.reserva)
+def mostrar_reservas(lista_cancha):
+    for cancha in lista_cancha:
+        for reservas in cancha.reservas:
+            print(f"la reservas de la cancha {reservas.cancha} son: {reservas.numero_reserva, reservas.fecha, reservas.cliente}\n")
+            print(f"la reservas del cliente {reservas.cliente} son: {reservas.numero_reserva, reservas.fecha, reservas.cancha}")
 
 def saldo_cliente(lista_clientes):
     id_cliente = input("introduzca el id del cliente que desea ver el saldo: ")

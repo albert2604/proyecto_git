@@ -16,14 +16,19 @@ def crear_cancha():
     habilitada = input("Esta habilitada?: ")
     cancha = Cancha(numero_cancha, deporte, precio, habilitada)
     return cancha
-def agregar_cancha(cancha, lista_cancha):
 
-    if cancha not in lista_cancha:
-        lista_cancha.append(cancha)
-    else:
-        print(f"La cancha {cancha.numero_cancha} ya existe en el centro")
+def agregar_cancha(lista_cancha):
+    cancha = crear_cancha()
+    for c in lista_cancha:
+            if c.numero_cancha == cancha.numero_cancha:
+                print("Cancha ya en la lista.")
+                return
 
-def listar_canchas_por_deporte(cancha, lista_cancha):
+    lista_cancha.append(cancha)
+    
+    print(f"Cancha {cancha.numero_cancha} agregado exitosamente.")
+
+def listar_canchas_por_deporte(lista_cancha):
     diccionario_canchas = {}
     deporte= input("Que deporte desea buscar?:")
     for cancha in lista_cancha:
@@ -31,6 +36,7 @@ def listar_canchas_por_deporte(cancha, lista_cancha):
             if deporte not in diccionario_canchas:
                 diccionario_canchas[deporte] = []
                 diccionario_canchas[deporte].append(cancha)
+                print(diccionario_canchas)
         else:
             print("No hay ninguna cacha con ese deporte")
 
