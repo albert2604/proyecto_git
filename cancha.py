@@ -3,7 +3,7 @@ class Cancha:
     def __init__(self, numero_cancha, deporte,precio, habilitada):
         self.numero_cancha = int(numero_cancha)
         self.deporte = deporte 
-        self.precio = precio
+        self.precio = int(precio)
         self.habilitada = habilitada
         self.reservas = []
         self.empleados = []
@@ -12,7 +12,7 @@ class Cancha:
 def crear_cancha():
     numero_cancha = input("numero de la cancha: ")
     deporte = input("Deporte a realizar: ")
-    precio = input("Precio de la cancha: ")
+    precio = int(input("Precio de la cancha: "))
     habilitada = input("Esta habilitada?: ")
     cancha = Cancha(numero_cancha, deporte, precio, habilitada)
     return cancha
