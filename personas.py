@@ -88,13 +88,13 @@ class Empleados(Personas):
         """Funcion para registrar empleados en una cancha,
         solicitando el id del empleado y la cancha en la que se quiere registrar.
         """
-def registrar_empleado_cancha(lista_canchas, lista_empleados):
+def registrar_empleado_cancha(lista_canchas):
     id_empleado = input("Ingrese el ID del empleado: ")
     empleado_encontrado = None
     
     # Verificar si el empleado está en la lista de empleados y no está asignado a otra cancha
     for cancha in lista_canchas:
-        for empleado in lista_empleados:
+        for empleado in cancha.empleados:
             if empleado.id == id_empleado:
                 empleado_encontrado = empleado
             break
@@ -151,7 +151,7 @@ def asignar_tarea(lista_canchas):
     tarea = input("Ingrese la tarea que desea asignar: ")
 
     for cancha in lista_canchas:
-        for empleado in cancha.reservas:
+        for empleado in cancha.empleados:
             if empleado.id == id_empleado:
                 if empleado.desocupado:
                     empleado.tareas.append(tarea)
@@ -166,10 +166,10 @@ def asignar_tarea(lista_canchas):
 Funcion para mostrar la lista de todos los empleados desocupados en ese momento.
 """
 #Mostrar empleados desocupados
-def empleados_desocupados(lista_canchas, lista_empleados):
+def empleados_desocupados(lista_canchas):
     desocupados = []
     for cancha in lista_canchas:
-        for empleado in lista_empleados:
+        for empleado in cancha.empleados:
             if empleado.desocupado:
                 desocupados.append(empleado)
         
