@@ -88,15 +88,17 @@ class Empleados(Personas):
         """Funcion para registrar empleados en una cancha,
         solicitando el id del empleado y la cancha en la que se quiere registrar.
         """
-def registrar_empleado_cancha(diccionario_canchas, lista_empleados):
+def registrar_empleado_cancha(lista_canchas, lista_empleados):
     id_empleado = input("Ingrese el ID del empleado: ")
     empleado_encontrado = None
     
     # Verificar si el empleado está en la lista de empleados y no está asignado a otra cancha
-    for empleado in lista_empleados:
-        if empleado.id == id_empleado:
-            empleado_encontrado = empleado
+    for cancha in lista_canchas:
+        for empleado in lista_empleados:
+            if empleado.id == id_empleado:
+                empleado_encontrado = empleado
             break
+        
 
 
     if not empleado_encontrado:
@@ -104,7 +106,7 @@ def registrar_empleado_cancha(diccionario_canchas, lista_empleados):
         return
 
     # Verificar si el empleado ya está registrado en alguna cancha
-    for cancha in diccionario_canchas:
+    for cancha in lista_canchas:
         if empleado_encontrado in cancha.empleados:
             print(f"El empleado {empleado_encontrado.nombre} {empleado_encontrado.apellido} ya está registrado en otra cancha.")
             return
@@ -114,7 +116,7 @@ def registrar_empleado_cancha(diccionario_canchas, lista_empleados):
 
     # Buscar la cancha por su deporte
     canchas_deporte = []
-    for c in diccionario_canchas:
+    for c in lista_canchas:
         if c.deporte.lower() == deporte_cancha.lower():
             canchas_deporte.append(c)
 
@@ -144,37 +146,39 @@ def registrar_empleado_cancha(diccionario_canchas, lista_empleados):
 
     """Funcion para asignar una tarea a un empleado 
     """
-def asignar_tarea(lista_empleados):
+def asignar_tarea(lista_canchas):
     id_empleado = input("Ingrese el ID del empleado al que desea asignar la tarea: ")
     tarea = input("Ingrese la tarea que desea asignar: ")
 
-    for empleado in lista_empleados:
-        if empleado.id == id_empleado:
-            if empleado.desocupado:
-                empleado.tareas.append(tarea)
-                empleado.desocupado = False
-                print(f"Tarea '{tarea}' asignada al empleado {empleado.nombre} {empleado.apellido}.")
-            else:
-                print(f"El empleado {empleado.nombre} {empleado.apellido} ya tiene tareas asignadas.")
-            return
-    print("Empleado no encontrado.")
+    for cancha in lista_canchas:
+        for empleado in cancha.reservas:
+            if empleado.id == id_empleado:
+                if empleado.desocupado:
+                    empleado.tareas.append(tarea)
+                    empleado.desocupado = False
+                    print(f"Tarea '{tarea}' asignada al empleado {empleado.nombre} {empleado.apellido}.")
+                else:
+                    print(f"El empleado {empleado.nombre} {empleado.apellido} ya tiene tareas asignadas.")
+                return
+        print("Empleado no encontrado.")
 
 """
 Funcion para mostrar la lista de todos los empleados desocupados en ese momento.
 """
 #Mostrar empleados desocupados
-def empleados_desocupados(lista_empleados):
+def empleados_desocupados(lista_canchas, lista_empleados):
     desocupados = []
-    for empleado in lista_empleados:
-        if empleado.desocupado:
-            desocupados.append(empleado)
-    
-    if not desocupados:
-        print("No hay empleados desocupados.")
-    else:
-        print("Empleados desocupados:")
-        for empleado in desocupados:
-            print(f"ID: {empleado.id}, Nombre: {empleado.nombre} {empleado.apellido}")
+    for cancha in lista_canchas:
+        for empleado in lista_empleados:
+            if empleado.desocupado:
+                desocupados.append(empleado)
+        
+        if not desocupados:
+            print("No hay empleados desocupados.")
+        else:
+            print("Empleados desocupados:")
+            for empleado in desocupados:
+                print(f"ID: {empleado.id}, Nombre: {empleado.nombre} {empleado.apellido}")
 """ 
     Funcion para quitar empleados de la cancha 
 """
