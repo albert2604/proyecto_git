@@ -13,6 +13,7 @@ class Clientes(Personas):
         self.activo = activo
         self.saldo = saldo
 
+
 """Funciones para crear y registrar al cliente"""    
 
 
