@@ -9,6 +9,7 @@ class Centro:
         self.lista_clientes = []
         self.lista_empleados = []
         
+        
 
     @staticmethod
     def main():
